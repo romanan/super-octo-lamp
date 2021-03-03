@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div><input type="button" value="sendMessage" onclick="sendMessage()"></div>
+    <div><input type="button" value="fetchTest" onclick="fetchTest()"></div>
+</body>
+<script type="text/javascript">
+
+    function sendMessage() {
+        window.chrome.webview.postMessage("circle.txt");
+    }
+
+    async function fetchTest() {
+        var t= await fetch("https://local-files.test/circle.txt");
+        var result = await t.blob();
+        var resultAsText = await result.text();
+        console.log(resultAsText);
+    }
+
+</script>
+</html>
